@@ -12,6 +12,7 @@ import MainPageBrand from "./components/MainPageBrand";
 import MainPageCarousel from "./components/MainPageCarrousel";
 import { NavigationContainer } from "@react-navigation/native";
 import Navigator from "./routes/homeStack";
+import BottomBar from "./routes/Navigation";
 
 const adidas = {
   name: "Adidas",
@@ -53,7 +54,9 @@ export default function App() {
     //     </View>
     //   </ScrollView>
     // </NavigationContainer>
-    <Navigator />
+    
+      <BottomBar/>
+    
   );
 }
 
@@ -62,6 +65,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#ECEEEE",
     alignItems: "center",
     justifyContent: "center",
+
+    flex: 1,
   },
   brandBoxes: {
     flexDirection: "row",

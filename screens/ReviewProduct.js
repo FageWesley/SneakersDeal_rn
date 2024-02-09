@@ -4,9 +4,11 @@ import React from "react";
 export default function ReviewProduct({ navigation }) {
   return (
     <View>
-      <Text>{navigation.getParam("title")}</Text>
-      <Text>{navigation.getParam("body")}</Text>
-      <Text>{navigation.getParam("rating")}</Text>
+      <Text>Review Product</Text>
+      <Button
+        title="Go to Home"
+        onPress={() => navigation.navigate("Home")}
+      ></Button>
     </View>
   );
 }
