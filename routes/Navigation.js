@@ -9,11 +9,13 @@ import Home from "../screens/Home";
 import ReviewProduct from "../screens/ReviewProduct";
 import Cart from "../screens/Cart";
 import Like from "../screens/Like";
+import ListPage from "../screens/ListPage";
 
 const homeName = "Home";
 const heartName = "Like";
 const settingsName = "Settings";
 const cartName = "Cart";
+const listPageName = "ListPage";
 
 const Tab = createBottomTabNavigator();
 

@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
         height: 75,
         
         
+        
     },
     cardContent:{
         marginVertical:8,
