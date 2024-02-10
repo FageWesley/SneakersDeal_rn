@@ -1,46 +1,94 @@
+
+import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
   Text,
   View,
-  FlatList,
-  TouchableOpacity,
+  ScrollView,
+  ScrollViewComponent,
 } from "react-native";
-import React from "react";
-import { useState } from "react";
+import TopBar from "../components/TopBar";
+import MainPageInfo from "../components/MainPageInfo";
+import MainPageBrand from "../components/MainPageBrand";
+import MainPageCarousel from "../components/MainPageCarrousel";
+import { NavigationContainer } from "@react-navigation/native";
 
-export default function Home({ navigation }) {
-  const [reviews, setReviews] = useState([
-    { title: "boo", rating: 5, body: "lorem ipsum", key: "1" },
-    { title: "boo1", rating: 5, body: "lorem ipsum", key: "2" },
-    { title: "boo2", rating: 5, body: "lorem ipsum", key: "3" },
-    { title: "boo3", rating: 5, body: "lorem ipsum", key: "4" },
-    { title: "bookit", rating: 5, body: "lorem ipsum", key: "5" },
-  ]);
-  const pressHandler = () => {
-    // navigation.navigate('ReviewProduct');
-    navigation.push("ReviewProduct");
-  };
 
+const adidas = {
+  name: "Adidas",
+  logo: require("../assets/images/Adidas-logo.png"),
+};
+const nike = {
+  name: "Nike",
+  logo: require("../assets/images/Nike-logo-cropped.png"),
+};
+const new_balance = {
+  name: "New Balance",
+  logo: require("../assets/images/New-Balance-logo.png"),
+};
+const jordan = {
+  name: "Jordan",
+  logo: require("../assets/images/Jordan-logo.png"),
+};
+
+export default function App() {
   return (
-    <View >
-      <FlatList
-        
-        data={reviews}
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            onPress={() => navigation.navigate("ReviewProduct", item)}
-          >
-            <Text style={styles.container}>{item.title}</Text>
-          </TouchableOpacity>
-        )}
-      ></FlatList>
-    </View>
+      <ScrollView>
+        <View style={styles.container}>
+          <MainPageInfo></MainPageInfo>
+          <View style={styles.brandBoxes}>
+            <MainPageBrand logo={nike.logo} />
+            <MainPageBrand logo={adidas.logo} />
+            <MainPageBrand logo={new_balance.logo} />
+            <MainPageBrand logo={jordan.logo} />
+          </View>
+          <View style={styles.carrousel}>
+            <Text style={styles.nextDrops}>Next Drops</Text>
+            <View style={styles.line} />
+            <MainPageCarousel></MainPageCarousel>
+          </View>
+
+          <StatusBar style="auto" />
+        </View>
+
+      </ScrollView>
+
+    
+    
+      
+    
   );
 }
 
 const styles = StyleSheet.create({
-    container :{
-        fontSize : 30,
-        margin:10,
-    }
+  container: {
+    backgroundColor: "#ECEEEE",
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop:20,
+    flex: 1,
+  },
+  brandBoxes: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+  },
+  carrousel: {
+    marginTop: 40,
+    height: 600,
+  },
+  nextDrops: {
+    fontSize: 30,
+    fontWeight: "bold",
+    color: "#000",
+    marginBottom: 20,
+    marginLeft: 20,
+  },
+  line: {
+    borderTopColor: "#009C9D",
+    borderTopWidth: 2,
+    width: 200,
+    marginLeft: 20,
+    position: "absolute",
+    marginTop: 40,
+  },
 });

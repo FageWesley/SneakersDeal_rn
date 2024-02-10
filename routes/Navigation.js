@@ -7,12 +7,16 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 //import screens
 import Home from "../screens/Home";
 import ReviewProduct from "../screens/ReviewProduct";
+import Cart from "../screens/Cart";
+import Like from "../screens/Like";
 
 const homeName = "Home";
-const reviewName = "ReviewProduct";
+const heartName = "Like";
 const settingsName = "Settings";
+const cartName = "Cart";
 
 const Tab = createBottomTabNavigator();
+
 
 export default function Navigation() {
   return (
@@ -24,7 +28,10 @@ export default function Navigation() {
             let iconName;
             if (route.name === homeName) {
               iconName = focused ? "home" : "home-outline";
-            } else if (route.name === reviewName) {
+            } else if (route.name === cartName) {
+              iconName = focused ? "cart" : "cart-outline";
+            }
+            else if (route.name === heartName) {
               iconName = focused ? "heart" : "heart-outline";
             }
             else if (route.name === settingsName) {
@@ -32,30 +39,23 @@ export default function Navigation() {
             }
             return <Ionicons name={iconName} size={size} color={color}/>;
           },
+          tabBarActiveTintColor: "#009C9D",
+          tabBarInactiveTintColor: "white",
+          headerShown: false,
+          tabBarStyle: { backgroundColor:"#212529", paddingTop:15, height:90},
+          tabBarHideOnKeyboard: true,
         })}
-        tabBarOptions={{
-          activeTintColor: "tomato",
-          inactiveTintColor: "gray",
-          labelStyle: {
-            fontSize: 12,
-            paddingBotton: 10,
-          },
-          style : {padding :10, height: 70}
-        }}
+        
       
       >
-        <Tab.Screen name={homeName} component={Home} />
-        <Tab.Screen name={reviewName} component={ReviewProduct} />
-        <Tab.Screen name={settingsName} component={ReviewProduct} />
+        <Tab.Screen name={homeName} component={Home} options={{tabBarLabel: ''}} />
+        <Tab.Screen name={cartName} component={Cart} options={{tabBarLabel: ''}}/>
+        <Tab.Screen name={heartName} component={Like} options={{tabBarLabel: ''}}/>
+        <Tab.Screen name={settingsName} component={ReviewProduct} options={{tabBarLabel: ''}}/>
       </Tab.Navigator>
     </NavigationContainer>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    
-
-    backgroundColor: "blue",
-  },
 });
