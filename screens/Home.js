@@ -51,6 +51,7 @@ export default function App() {
           <View style={styles.carrousel}>
             <Text style={styles.nextDrops}>Next Drops</Text>
             <View style={styles.line} />
+            <View style={{marginTop:75}}></View>
             <MainCarousel></MainCarousel>
           </View>
 
@@ -80,6 +81,13 @@ const styles = StyleSheet.create({
   carrousel: {
     marginTop: 40,
     height: 600,
+    backgroundColor:"white",
+    width:361,
+    borderRadius:5,
+    height: 450,
+    alignItems: "center",
+    marginLeft: 17,
+    
     
   },
   nextDrops: {
@@ -88,14 +96,16 @@ const styles = StyleSheet.create({
     color: "#000",
     marginBottom: 20,
     marginLeft: 20,
-    alignContent:"flex-end"
+    position: "absolute",
+    top: 0,
+    left: 0,
   },
   line: {
     borderTopColor: "#009C9D",
     borderTopWidth: 2,
     width: 200,
-    marginLeft: 20,
     position: "absolute",
     marginTop: 40,
+    left: 20,
   },
 });

@@ -17,7 +17,7 @@ export default function MainCarousel() {
             inactibeslideOpacity={0.77} //opacity of the inactive slides
             sliderWidth={400} //actuall slide width
             itemWidth={260} //Card width
-            slideStyle={{display:'flex',alignItems:'center'}}
+            slideStyle={{display:'flex',alignItems:'stretch'}}
         />
     </View>
   )
