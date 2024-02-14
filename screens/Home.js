@@ -12,6 +12,7 @@ import MainPageInfo from "../components/MainPageInfo";
 import MainPageBrand from "../components/MainPageBrand";
 import MainPageCarousel from "../components/MainPageCarrousel";
 import { NavigationContainer } from "@react-navigation/native";
+import MainCarousel from '../components/MainCarousel'
 
 
 const adidas = {
@@ -34,22 +35,27 @@ const jordan = {
 export default function App() {
   return (
       <ScrollView>
-        <View style={styles.container}>
-          <MainPageInfo></MainPageInfo>
+    
+
+    {/* First box  */}
+        <View style={[styles.container, {alignItems: "center"}]}>
+          <MainPageInfo ></MainPageInfo>
           <View style={styles.brandBoxes}>
             <MainPageBrand logo={nike.logo} />
             <MainPageBrand logo={adidas.logo} />
             <MainPageBrand logo={new_balance.logo} />
             <MainPageBrand logo={jordan.logo} />
           </View>
+        </View>
+          {/* Carrousel component */}
           <View style={styles.carrousel}>
             <Text style={styles.nextDrops}>Next Drops</Text>
             <View style={styles.line} />
-            <MainPageCarousel></MainPageCarousel>
+            <MainCarousel></MainCarousel>
           </View>
 
           <StatusBar style="auto" />
-        </View>
+        
 
       </ScrollView>
 
@@ -63,7 +69,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#ECEEEE",
-    alignItems: "center",
     justifyContent: "center",
     marginTop:20,
     flex: 1,
@@ -75,6 +80,7 @@ const styles = StyleSheet.create({
   carrousel: {
     marginTop: 40,
     height: 600,
+    
   },
   nextDrops: {
     fontSize: 30,
@@ -82,6 +88,7 @@ const styles = StyleSheet.create({
     color: "#000",
     marginBottom: 20,
     marginLeft: 20,
+    alignContent:"flex-end"
   },
   line: {
     borderTopColor: "#009C9D",
