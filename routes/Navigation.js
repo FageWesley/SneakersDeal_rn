@@ -10,6 +10,7 @@ import ReviewProduct from "../screens/ReviewProduct";
 import Cart from "../screens/Cart";
 import Like from "../screens/Like";
 import ListPage from "../screens/ListPage";
+import Settings from "../screens/Settings";
 
 const homeName = "Home";
 const heartName = "Like";
@@ -53,7 +54,7 @@ export default function Navigation() {
         <Tab.Screen name={homeName} component={Home} options={{tabBarLabel: ''}} />
         <Tab.Screen name={cartName} component={Cart} options={{tabBarLabel: ''}}/>
         <Tab.Screen name={heartName} component={Like} options={{tabBarLabel: ''}}/>
-        <Tab.Screen name={settingsName} component={ReviewProduct} options={{tabBarLabel: ''}}/>
+        <Tab.Screen name={settingsName} component={Settings} options={{tabBarLabel: ''}}/>
       </Tab.Navigator>
     </NavigationContainer>
   );

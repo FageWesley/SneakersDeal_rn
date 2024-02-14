@@ -1,10 +1,10 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, TextInput } from 'react-native'
 import React from 'react'
 
 export default function Search() {
   return (
     <View>
-      <Text>Search</Text>
+      <TextInput placeholder='test'></TextInput>
     </View>
   )
 }

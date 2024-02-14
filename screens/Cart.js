@@ -2,8 +2,9 @@ import { StyleSheet, Text, View, Image } from "react-native";
 import React from "react";
 import ListPage from "./ListPage";
 
-export default function Cart({navigation}) {
+export default function Cart({ navigation }) {
   return (
+    
     <View style={styles.container}>
       <View style={styles.emptyCart}>
         <Image
@@ -12,7 +13,12 @@ export default function Cart({navigation}) {
         />
         <Text style={styles.text}>
           Your cart is empty.{"\n"} start shopping{" "}
-          <Text style={styles.linkToShop} onPress={navigation.navigate("ListPage")}>here.</Text>
+          <Text
+            style={styles.linkToShop}
+            onPress={() => navigation.navigate("ListPage")}
+          >
+            here.
+          </Text>
         </Text>
       </View>
     </View>

@@ -8,8 +8,8 @@ import {
 import React from "react";
 import { useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
-
-export default function Home({ navigation }) {
+ 
+export default function ReviewProduct({ navigation }) {
   const [reviews, setReviews] = useState([
     { title: "boo", rating: 5, body: "lorem ipsum", key: "1" },
     { title: "boo1", rating: 5, body: "lorem ipsum", key: "2" },
@@ -17,19 +17,18 @@ export default function Home({ navigation }) {
     { title: "boo3", rating: 5, body: "lorem ipsum", key: "4" },
     { title: "bookit", rating: 5, body: "lorem ipsum", key: "5" },
   ]);
-  const pressHandler = () => {
-     navigation.navigate('ReviewProduct');
-    
-  };
+  // const pressHandler = () => {
+  //    navigation.navigate('ReviewProduct');
+
+  // };
 
   return (
     <>
       <FlatList
-        
         data={reviews}
         renderItem={({ item }) => (
           <TouchableOpacity
-            onPress={() => navigation.navigate("ReviewProduct", item)}
+            onPress={() => navigation.navigate("ProductPage", item)}
           >
             <Text style={styles.container}>{item.title}</Text>
           </TouchableOpacity>
@@ -40,8 +39,8 @@ export default function Home({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-    container :{
-        fontSize : 30,
-        margin:10,
-    }
+  container: {
+    fontSize: 30,
+    margin: 10,
+  },
 });

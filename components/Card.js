@@ -1,14 +1,15 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View,TouchableOpacity } from 'react-native'
 import React from 'react'
 
 
-export default function Card(props) {
+export default function Card(props, {navigation}) {
   return (
-    <View style={styles.card}>
+    <TouchableOpacity
+     style={styles.card}>
       <View style={styles.cardContent}>
         {props.children}
       </View>
-    </View>
+    </TouchableOpacity>
   )
 }
 
