@@ -1,11 +1,11 @@
-import { View, Text, Button,StyleSheet,Image} from 'react-native'
+import { View, Text, Button,StyleSheet,Image, TouchableOpacity} from 'react-native'
 import React from 'react'
 
 export default function MainPageBrand(props) {
   return (
-    <View style={styles.brandBox}>
+    <TouchableOpacity style={styles.brandBox}>
       <Image style={styles.logoInBox} source={props.logo}/>
-    </View>
+    </TouchableOpacity>
   )
 }
 

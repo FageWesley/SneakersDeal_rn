@@ -1,19 +1,13 @@
-
 import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
   Text,
   View,
   ScrollView,
-  ScrollViewComponent,
 } from "react-native";
-import TopBar from "../components/TopBar";
 import MainPageInfo from "../components/MainPageInfo";
 import MainPageBrand from "../components/MainPageBrand";
-import MainPageCarousel from "../components/MainPageCarrousel";
-import { NavigationContainer } from "@react-navigation/native";
-import MainCarousel from '../components/MainCarousel'
-
+import MainCarousel from "../components/MainCarousel";
 
 const adidas = {
   name: "Adidas",
@@ -34,36 +28,29 @@ const jordan = {
 
 export default function App() {
   return (
-      <ScrollView>
-    
-
-    {/* First box  */}
-        <View style={[styles.container, {alignItems: "center"}]}>
-          <MainPageInfo ></MainPageInfo>
-          <View style={styles.brandBoxes}>
-            <MainPageBrand logo={nike.logo} />
-            <MainPageBrand logo={adidas.logo} />
-            <MainPageBrand logo={new_balance.logo} />
-            <MainPageBrand logo={jordan.logo} />
-          </View>
+    <ScrollView
+      scrollIndicatorInsets={{ top: 0, left: 0, bottom: 0, right: -10 }}
+    >
+      {/* First box  */}
+      <View style={[styles.container, { alignItems: "center" }]}>
+        <MainPageInfo></MainPageInfo>
+        <View style={styles.brandBoxes}>
+          <MainPageBrand logo={nike.logo} />
+          <MainPageBrand logo={adidas.logo} />
+          <MainPageBrand logo={new_balance.logo} />
+          <MainPageBrand logo={jordan.logo} />
         </View>
-          {/* Carrousel component */}
-          <View style={styles.carrousel}>
-            <Text style={styles.nextDrops}>Next Drops</Text>
-            <View style={styles.line} />
-            <View style={{marginTop:75}}></View>
-            <MainCarousel></MainCarousel>
-          </View>
+      </View>
+      {/* Carrousel component */}
+      <View style={styles.carrousel}>
+        <Text style={styles.nextDrops}>Next Drops</Text>
+        <View style={styles.line} />
+        <View style={{ marginTop: 75 }}></View>
+        <MainCarousel></MainCarousel>
+      </View>
 
-          <StatusBar style="auto" />
-        
-
-      </ScrollView>
-
-    
-    
-      
-    
+      <StatusBar style="auto" />
+    </ScrollView>
   );
 }
 
@@ -71,7 +58,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#ECEEEE",
     justifyContent: "center",
-    marginTop:20,
+    marginTop: 20,
     flex: 1,
   },
   brandBoxes: {
@@ -81,14 +68,12 @@ const styles = StyleSheet.create({
   carrousel: {
     marginTop: 40,
     height: 600,
-    backgroundColor:"white",
-    width:361,
-    borderRadius:5,
+    backgroundColor: "white",
+    width: 361,
+    borderRadius: 5,
     height: 450,
     alignItems: "center",
     marginLeft: 17,
-    
-    
   },
   nextDrops: {
     fontSize: 30,

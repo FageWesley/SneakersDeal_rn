@@ -4,9 +4,9 @@ import React from 'react'
 export default function CarouselCard({item}) {
   return (
     <View style={styles.Card}>
-        <View style={{width:'fit-content'}}>
-            {/* <Image source={item.image}/> */}
-        </View>
+        <Image source={item.image} style={{height: 200, width: 200, borderRadius: 40}}/>
+        <View style={{flex:1,justifyContent:'center',alignItems:'center'}}/>
+            <Text>{item.description}</Text>
     </View>
   )
 }
