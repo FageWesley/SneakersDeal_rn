@@ -1,10 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import {
-  StyleSheet,
-  Text,
-  View,
-  ScrollView,
-} from "react-native";
+import { StyleSheet, Text, View, ScrollView } from "react-native";
 import MainPageInfo from "../components/MainPageInfo";
 import MainPageBrand from "../components/MainPageBrand";
 import MainCarousel from "../components/MainCarousel";
@@ -28,10 +23,9 @@ const jordan = {
 
 export default function App() {
   return (
-    <ScrollView
-      scrollIndicatorInsets={{ top: 0, left: 0, bottom: 0, right: -10 }}
-    >
+    <ScrollView>
       {/* First box  */}
+      
       <View style={[styles.container, { alignItems: "center" }]}>
         <MainPageInfo></MainPageInfo>
         <View style={styles.brandBoxes}>
@@ -41,6 +35,7 @@ export default function App() {
           <MainPageBrand logo={jordan.logo} />
         </View>
       </View>
+
       {/* Carrousel component */}
       <View style={styles.carrousel}>
         <Text style={styles.nextDrops}>Next Drops</Text>
@@ -48,8 +43,6 @@ export default function App() {
         <View style={{ marginTop: 75 }}></View>
         <MainCarousel></MainCarousel>
       </View>
-
-      <StatusBar style="auto" />
     </ScrollView>
   );
 }

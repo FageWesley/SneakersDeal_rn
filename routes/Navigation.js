@@ -6,17 +6,15 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from "react-native-vector-icons/Ionicons";
 //import screens
 import Home from "../screens/Home";
-import ReviewProduct from "../screens/ReviewProduct";
 import Cart from "../screens/Cart";
 import Like from "../screens/Like";
-import ListPage from "../screens/ListPage";
 import Settings from "../screens/Settings";
 
 const homeName = "Home";
 const heartName = "Like";
 const settingsName = "Settings";
 const cartName = "Cart";
-const listPageName = "ListPage";
+
 
 const Tab = createBottomTabNavigator();
 

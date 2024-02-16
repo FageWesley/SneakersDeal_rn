@@ -57,6 +57,6 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
   arrowIcon: {
-  marginTop: 18,
+    marginTop: 18,
   },
 });

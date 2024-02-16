@@ -7,8 +7,8 @@ import CarouselCard from './CarouselCard'
 
 export default function MainCarousel() {
   return (
-    <View>
-        <Carousel
+    <>
+        {/* <Carousel
             containerCustomStyle={{overflow:'visible' }}
             data={slides}
             renderItem={({item}) => <CarouselCard item={item}/>}            
@@ -18,8 +18,8 @@ export default function MainCarousel() {
             sliderWidth={400} //actuall slide width
             itemWidth={260} //Card width
             slideStyle={{display:'flex',alignItems:'stretch'}}
-        />
-    </View>
+        /> */}
+    </>
   )
 }
 
