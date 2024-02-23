@@ -9,64 +9,97 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import { FIREBASE_AUTH } from "../FirebaseConfig";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { signInWithEmailAndPassword} from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setloading] = useState(false);
-  const auth = FIREBASE_AUTH;
 
   const signIn = async () => {
     setloading(true);
     try {
-      const response = await signInWithEmailAndPassword(auth, email, password);
-    //   const user = userCredential.user;
-      console.log(response);
+      const response = await signInWithEmailAndPassword(
+        FIREBASE_AUTH,
+        email,
+        password
+      );
     } catch (error) {
-        alert('Sign in failed' + error.message);
-        console.log(error);
+      switch (error.code) {
+        case "auth/invalid-email":
+          alert("Invalid email");
+          break;
+        case "auth/user-not-found":
+          alert("User not found");
+          break;
+        case "auth/wrong-password":
+          alert("Wrong password");
+          break;
+        default:
+          break;
+      }
     }
     setloading(false);
-  }
+  };
   const signUp = async () => {
     setloading(true);
     try {
-      const response = await createUserWithEmailAndPassword(auth,email, password);
-      const user = userCredential.user;
-      console.log(user);
+      const response = await createUserWithEmailAndPassword(
+        FIREBASE_AUTH,
+        email,
+        password
+      );
     } catch (error) {
-        alert('Sign in failed' + error.message);
-        console.log(error);
+      switch (error.code) {
+        case "auth/email-already-in-use":
+          alert("Email already in use");
+        case "auth/invalid-email":
+          alert("Invalid email");
+        case "auth/weak-password":
+          alert("Weak password");
+        case "auth/operation-not-allowed":
+          alert("Operation not allowed");
+        case "auth/argument-error":
+          alert("Argument error");
+          break;
+
+        default:
+          
+          break;
+      }
     }
     setloading(false);
-  }
-
+  };
+  
   return (
     <View style={styles.container}>
-    <KeyboardAvoidingView behavior="padding">
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        autoCapitalize="none"
-        onChangeText={(text) => setEmail(text)}
-        value={email}
-      ></TextInput>
-      <TextInput
-        style={styles.input}
-        secureTextEntry={true}
-        placeholder="password"
-        autoCapitalize="none"
-        onChangeText={(text) => setPassword(text)}
-        value={password}
-      ></TextInput>
-      {loading ? 
-        <ActivityIndicator size="large" color="#00ff00" />
-      : <>
-        <Button title="Login" onPress={()=> signIn()} /> 
-        <Button title="other" onPress={()=> signUp()} />
-      </>}
+      <KeyboardAvoidingView behavior="padding">
+        <TextInput
+          style={styles.input}
+          placeholder="Email"
+          autoCapitalize="none"
+          onChangeText={(text) => setEmail(text)}
+          value={email}
+        ></TextInput>
+        <TextInput
+          style={styles.input}
+          secureTextEntry={true}
+          placeholder="password"
+          autoCapitalize="none"
+          onChangeText={(text) => setPassword(text)}
+          value={password}
+        ></TextInput>
+        {loading ? (
+          <ActivityIndicator size="large" color="#00ff00" />
+        ) : (
+          <>
+            <Button title="Login" onPress={() => signIn()} />
+            <Button title="other" onPress={() => signUp()} />
+          </>
+        )}
       </KeyboardAvoidingView>
     </View>
   );

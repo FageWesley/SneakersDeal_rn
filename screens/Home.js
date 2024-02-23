@@ -24,6 +24,7 @@ const jordan = {
 export default function App() {
   return (
     <ScrollView>
+    
       {/* First box  */}
       
       <View style={[styles.container, { alignItems: "center" }]}>

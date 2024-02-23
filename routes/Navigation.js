@@ -21,7 +21,7 @@ const Tab = createBottomTabNavigator();
 
 export default function Navigation() {
   return (
-    <NavigationContainer>
+    <NavigationContainer independent={true}>
       <Tab.Navigator
         initialRouteName={homeName}
         screenOptions={({ route }) => ({
@@ -45,6 +45,7 @@ export default function Navigation() {
           headerShown: false,
           tabBarStyle: { backgroundColor:"#212529", paddingTop:15, height:90},
           tabBarHideOnKeyboard: true,
+          
         })}
         
       

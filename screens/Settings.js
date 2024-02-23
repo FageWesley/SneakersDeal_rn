@@ -2,8 +2,13 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import Card from "../components/Card";
 import IonsIcon from "react-native-vector-icons/Ionicons";
+import { FIREBASE_AUTH } from "../FirebaseConfig";
+import { signOut } from "firebase/auth";
 
 export default function Settings() {
+  const logOut = async () => {
+    await signOut(FIREBASE_AUTH);
+  };
   return (
     <View style={styles.container}>
       <Card>
@@ -34,7 +39,7 @@ export default function Settings() {
         />
       </Card>
       <Card>
-        <Text style={styles.SettingsCardTitle}>Log Out</Text>
+        <Text style={styles.SettingsCardTitle} onPress={logOut}>Log Out</Text>
       </Card>
     </View>
   );

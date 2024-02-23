@@ -8,40 +8,38 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Home from "./screens/Home";
 import Cart from "./screens/Cart";
 import { User, onAuthStateChanged } from "firebase/auth";
-import { FIREBASE_AUTH } from "./FirebaseConfig";
+import { FIREBASE_APP, FIREBASE_AUTH } from "./FirebaseConfig";
+
+
+
+
 
 const Stack = createNativeStackNavigator();
 const InsideStack = createNativeStackNavigator();
 
-function InsideApp() {
-  return (
-    <InsideStack.Navigator>
-      <InsideStack.Screen
-        name="Home"
-        component={Home}
-        options={{ headerShown: false }}
-      />
-      <InsideStack.Screen
-        name="Cart"
-        component={Cart}
-        options={{ headerShown: false }}
-      />
-    </InsideStack.Navigator>
-  );
-}
+
 
 export default function App() {
-  const [user, setUser] = (useState < User) | (null > null);
+  const [user, setUser] = useState(null);
+  
+  useEffect(() => {
+    onAuthStateChanged(FIREBASE_AUTH, (user) => {
+      setUser(user);
+    });
+  }, []);
 
   return (
-    <NavigationContainer>
+    <NavigationContainer >
+    {user ? (<TopBar/>) : null}
       <Stack.Navigator initalRouteName="Login">
         {user ? (
+          
           <Stack.Screen
             name="InsideApp"
-            component={InsideApp}
+            component={BottomBar}
             options={{ headerShown: false }}
           />
+          
         ) : (
           <Stack.Screen
             name="Login"
@@ -50,6 +48,7 @@ export default function App() {
           />
         )}
       </Stack.Navigator>
+      
     </NavigationContainer>
   );
 }
