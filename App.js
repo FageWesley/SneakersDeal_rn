@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import BottomBar from "./components/BottomBar";
 import TopBar from "./components/TopBar";
 import Login from "./screens/Login";
+import SignUp from "./screens/SignUp";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Home from "./screens/Home";
@@ -47,6 +48,11 @@ export default function App() {
             options={{ headerShown: false }}
           />
         )}
+        <Stack.Screen
+            name="SignUp"
+            component={SignUp}
+            options={{ headerShown: false }}
+          />
       </Stack.Navigator>
       
     </NavigationContainer>
