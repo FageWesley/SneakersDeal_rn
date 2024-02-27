@@ -3,7 +3,7 @@ import React from 'react'
 import { useNavigation } from '@react-navigation/native'
 
 
-export default function Card(props) {
+export default function ProductCard(props) {
   const navigation = useNavigation();
   
   return (
@@ -19,17 +19,17 @@ export default function Card(props) {
 const styles = StyleSheet.create({
 
     card:{
-        borderRadius:5,
+        borderRadius:3,
         elevation:3,
-        backgroundColor:'#fff',
+        backgroundColor:'#f5f5f5',
         shadowOffset:{width:1,height:1},
         shadowColor:'#333',
-        shadowOpacity:0.3,
+        shadowOpacity:0.1,
         shadowRadius:2,
-        marginHorizontal:4,
-        marginVertical:6,
-        width: 361,
-        height: 75,
+        marginHorizontal:2,
+        marginVertical:2,
+        width: 185,
+        height: 190,
         
         
         
@@ -37,7 +37,6 @@ const styles = StyleSheet.create({
     cardContent:{
         marginVertical:8,
         marginHorizontal:8,
-        flexDirection:'row',
 
     },
 })

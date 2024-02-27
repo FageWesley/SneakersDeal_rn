@@ -7,7 +7,7 @@ export const nike = {
     logo: require("../assets/images/Nike-logo-cropped.png"),
   };
 export  const new_balance = {
-    name: "New Balance",
+    name: "New_balance",
     logo: require("../assets/images/New-Balance-logo.png"),
   };
 export  const jordan = {

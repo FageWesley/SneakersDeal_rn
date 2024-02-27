@@ -55,11 +55,6 @@ export default function App() {
             component={SignUp}
             options={{ headerShown: false }}
           />
-        <Stack.Screen
-            name="test"
-            component={ProductPage}
-            options={{ headerShown: false }}
-          />
 
       </Stack.Navigator>
       

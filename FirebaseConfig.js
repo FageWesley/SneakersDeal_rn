@@ -8,7 +8,8 @@ import {
   initializeAuth,
   getReactNativePersistence,
 } from "firebase/auth";
-import { getDatabase, ref, set, onValue } from "firebase/database";
+import firebase from 'firebase/compat/app';
+import { getDatabase, ref, set, onValue, get, child } from "firebase/database";
 // import { getFirestore } from "firebase/firestore";
 import ReactNativeAsyncStorage from "@react-native-async-storage/async-storage";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -43,7 +44,40 @@ function writeUserData(name, imageUrl, price, id) {
     image: imageUrl,
   });
 }
+// get products by brand
+export function getItemsByBrand(brand) {
+  const products = ref(FIREBASE_DATABASE, "products/");
+  const productsArray = [];
+  let value;
+  onValue(products, (snapshot) => {
+    const data = snapshot.val();
+    for (let key in data) {
+      if (data.hasOwnProperty(key)) {
+        value = data[key].brand;
+      }
 
+      if (value == brand) {
+        productsArray.push(data[key]);
+        // console.log(productsArray)
+      }
+    }
+  });
 
+  return productsArray;
+}
+
+// get all products
+export default function getAllProducts(){
+  const products = ref(FIREBASE_DATABASE, "products/");
+  const productsArray = [];
+  onValue(products, (snapshot) => {
+    const data = snapshot.val();
+    for (let key in data) {
+      productsArray.push(data[key]); 
+    }
+  });
+
+  return productsArray;
+}
 
 

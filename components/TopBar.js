@@ -1,10 +1,31 @@
-import { View, Text, Button, StyleSheet, Image, Modal } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  Modal,
+  TextInput,
+  FlatList,
+  Keyboard,
+} from "react-native";
 import React from "react";
 import { useState } from "react";
 import Ionsicons from "react-native-vector-icons/Ionicons";
+import getAllProducts from "../FirebaseConfig";
+import ProductCard from "./ProductCard";
+import { useNavigation } from "@react-navigation/native";
 
 export default function TopBar() {
+  const navigation = useNavigation();
   const [modalVisible, setModalVisible] = useState(false);
+  const [search, setSearch] = useState("");
+  const allProducts = getAllProducts();
+  const [filteredSearch, SetFilteredSearch] = useState([]);
+  function handleFilter(searchTerm) {
+    SetFilteredSearch(
+      allProducts.filter((products) => products.title.includes(searchTerm))
+    );
+  }
 
   return (
     <View style={styles.top}>
@@ -18,26 +39,9 @@ export default function TopBar() {
         color={"white"}
         size={24}
         style={styles.searchIcon}
-        onPress={() => setModalVisible(!modalVisible)}
+        onPress={() => navigation.navigate("Filter")}
       ></Ionsicons>
-      <Modal style={styles.modal} visible={modalVisible} animationType="slide">
-        <View style={styles.modal}>
-          <View style={styles.top}>
-            <Image
-              source={require("../assets/images/Logo.png")}
-              style={styles.logo}
-            ></Image>
-            <Text style={styles.title}>SneakersDeal</Text>
-            <Ionsicons
-              name={"close"}
-              color={"white"}
-              size={32}
-              style={styles.searchIcon}
-              onPress={() => setModalVisible(!modalVisible)}
-            />
-          </View>
-        </View>
-      </Modal>
+
     </View>
   );
 }
@@ -54,7 +58,6 @@ const styles = StyleSheet.create({
     position: "fixed",
     top: 0,
     paddingBottom: 10,
-
     backgroundColor: "#212529",
     flexDirection: "row",
     alignItems: "flex-end",
@@ -73,5 +76,30 @@ const styles = StyleSheet.create({
     position: "absolute",
     right: 20,
     bottom: 10,
+  },
+  searchInput: {
+    width: 361,
+    height: 50,
+    borderColor: "black",
+    borderWidth: 1,
+    borderRadius: 5,
+    marginTop: 10,
+    alignSelf: "center",
+    paddingLeft: 5,
+  },
+  searchClearIcon: {
+    position: "absolute",
+    top: 108,
+    right: 20,
+  },
+  image: {
+    flexDirection: "row",
+    height: 150,
+    width: 150,
+    borderRadius: 0,
+    alignSelf: "flex-start",
+  },
+  container: {
+    alignSelf: "center",
   },
 });

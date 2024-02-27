@@ -1,13 +1,8 @@
-import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, ScrollView, Button } from "react-native";
 import MainPageInfo from "../components/MainPageInfo";
 import MainPageBrand from "../components/MainPageBrand";
 import MainCarousel from "../components/MainCarousel";
 import { nike, adidas, new_balance, jordan } from "../components/Brands";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import NavigationStack from "../routes/NavigationStack";
-import { NavigationContainer } from "@react-navigation/native";
-import ProductPage from "../screens/ProductPage";
 import { useNavigation } from "@react-navigation/native";
 
 
@@ -21,12 +16,14 @@ export default function App() {
           <MainPageInfo></MainPageInfo>
 
           <View style={styles.brandBoxes}>
-            <MainPageBrand logo={nike.logo}/>
-            <MainPageBrand logo={adidas.logo} />
-            <MainPageBrand logo={new_balance.logo} />
-            <MainPageBrand logo={jordan.logo} />
+            <MainPageBrand logo={nike.logo} name={nike.name}/>
+            <MainPageBrand logo={adidas.logo} name={adidas.name}/>
+            <MainPageBrand logo={new_balance.logo}name={new_balance.name} />
+            <MainPageBrand logo={jordan.logo} name={jordan.name}/>
           </View>
+          <Text onPress={()=>navigation.navigate("Filter")}>blaaaaaaaaaaaaaaaaaa</Text>
         </View>
+
 
         {/* Carrousel component */}
         <View style={styles.carrousel}>
@@ -35,11 +32,6 @@ export default function App() {
           <View style={{ marginTop: 75 }}></View>
           <MainCarousel></MainCarousel>
         </View>
-        <Button
-          title="faitmwenchié"
-          onPress={() => navigation.navigate("ProductPage")}
-          color={"red"}
-        ></Button>
     </ScrollView>
   );
 }
