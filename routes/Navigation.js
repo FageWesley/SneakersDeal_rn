@@ -9,6 +9,9 @@ import Home from "../screens/Home";
 import Cart from "../screens/Cart";
 import Like from "../screens/Like";
 import Settings from "../screens/Settings";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import ProductPage from "../screens/ProductPage";
+import NavigationStack from "./NavigationStack";
 
 const homeName = "Home";
 const heartName = "Like";
@@ -47,13 +50,12 @@ export default function Navigation() {
           tabBarHideOnKeyboard: true,
           
         })}
-        
-      
       >
-        <Tab.Screen name={homeName} component={Home} options={{tabBarLabel: ''}} />
+        <Tab.Screen name={homeName} component={NavigationStack} options={{tabBarLabel: ''}} />
         <Tab.Screen name={cartName} component={Cart} options={{tabBarLabel: ''}}/>
         <Tab.Screen name={heartName} component={Like} options={{tabBarLabel: ''}}/>
         <Tab.Screen name={settingsName} component={Settings} options={{tabBarLabel: ''}}/>
+        
       </Tab.Navigator>
     </NavigationContainer>
   );

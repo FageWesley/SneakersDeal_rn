@@ -4,15 +4,17 @@ import Card from "../components/Card";
 import IonsIcon from "react-native-vector-icons/Ionicons";
 import { FIREBASE_AUTH } from "../FirebaseConfig";
 import { signOut } from "firebase/auth";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Settings() {
   const logOut = async () => {
     await signOut(FIREBASE_AUTH);
   };
+  const navigation = useNavigation()
   return (
     <View style={styles.container}>
-      <Card>
-        <Text style={styles.SettingsCardTitle}>Personal informations</Text>
+      <Card >
+        <Text onPress={()=> navigation.navigate("ProductPage")} style={styles.SettingsCardTitle}>Personal informations</Text>
         <IonsIcon
           name={"caret-forward-outline"}
           color={"black"}
@@ -38,7 +40,7 @@ export default function Settings() {
           style={styles.arrowIcon}
         />
       </Card>
-      <Card>
+      <Card >
         <Text style={styles.SettingsCardTitle} onPress={logOut}>Log Out</Text>
       </Card>
     </View>

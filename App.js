@@ -4,12 +4,14 @@ import BottomBar from "./components/BottomBar";
 import TopBar from "./components/TopBar";
 import Login from "./screens/Login";
 import SignUp from "./screens/SignUp";
-import { NavigationContainer } from "@react-navigation/native";
+import Search from "./screens/Search";
+import { NavigationContainer, NavigationContext} from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Home from "./screens/Home";
 import Cart from "./screens/Cart";
 import { User, onAuthStateChanged } from "firebase/auth";
 import { FIREBASE_APP, FIREBASE_AUTH } from "./FirebaseConfig";
+import ProductPage from "./screens/ProductPage";
 
 
 
@@ -38,7 +40,7 @@ export default function App() {
           <Stack.Screen
             name="InsideApp"
             component={BottomBar}
-            options={{ headerShown: false }}
+            options={{ headerShown: false}}
           />
           
         ) : (
@@ -53,8 +55,15 @@ export default function App() {
             component={SignUp}
             options={{ headerShown: false }}
           />
+        <Stack.Screen
+            name="test"
+            component={ProductPage}
+            options={{ headerShown: false }}
+          />
+
       </Stack.Navigator>
       
     </NavigationContainer>
   );
 }
+

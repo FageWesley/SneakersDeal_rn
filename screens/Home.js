@@ -1,49 +1,45 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, ScrollView } from "react-native";
+import { StyleSheet, Text, View, ScrollView, Button } from "react-native";
 import MainPageInfo from "../components/MainPageInfo";
 import MainPageBrand from "../components/MainPageBrand";
 import MainCarousel from "../components/MainCarousel";
+import { nike, adidas, new_balance, jordan } from "../components/Brands";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import NavigationStack from "../routes/NavigationStack";
+import { NavigationContainer } from "@react-navigation/native";
+import ProductPage from "../screens/ProductPage";
+import { useNavigation } from "@react-navigation/native";
 
-const adidas = {
-  name: "Adidas",
-  logo: require("../assets/images/Adidas-logo.png"),
-};
-const nike = {
-  name: "Nike",
-  logo: require("../assets/images/Nike-logo-cropped.png"),
-};
-const new_balance = {
-  name: "New Balance",
-  logo: require("../assets/images/New-Balance-logo.png"),
-};
-const jordan = {
-  name: "Jordan",
-  logo: require("../assets/images/Jordan-logo.png"),
-};
 
 export default function App() {
+  const navigation = useNavigation();
+
   return (
     <ScrollView>
-    
       {/* First box  */}
-      
-      <View style={[styles.container, { alignItems: "center" }]}>
-        <MainPageInfo></MainPageInfo>
-        <View style={styles.brandBoxes}>
-          <MainPageBrand logo={nike.logo} />
-          <MainPageBrand logo={adidas.logo} />
-          <MainPageBrand logo={new_balance.logo} />
-          <MainPageBrand logo={jordan.logo} />
-        </View>
-      </View>
+        <View style={[styles.container, { alignItems: "center" }]}>
+          <MainPageInfo></MainPageInfo>
 
-      {/* Carrousel component */}
-      <View style={styles.carrousel}>
-        <Text style={styles.nextDrops}>Next Drops</Text>
-        <View style={styles.line} />
-        <View style={{ marginTop: 75 }}></View>
-        <MainCarousel></MainCarousel>
-      </View>
+          <View style={styles.brandBoxes}>
+            <MainPageBrand logo={nike.logo}/>
+            <MainPageBrand logo={adidas.logo} />
+            <MainPageBrand logo={new_balance.logo} />
+            <MainPageBrand logo={jordan.logo} />
+          </View>
+        </View>
+
+        {/* Carrousel component */}
+        <View style={styles.carrousel}>
+          <Text style={styles.nextDrops}>Next Drops</Text>
+          <View style={styles.line} />
+          <View style={{ marginTop: 75 }}></View>
+          <MainCarousel></MainCarousel>
+        </View>
+        <Button
+          title="faitmwenchié"
+          onPress={() => navigation.navigate("ProductPage")}
+          color={"red"}
+        ></Button>
     </ScrollView>
   );
 }

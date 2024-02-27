@@ -4,7 +4,7 @@ import React from 'react'
 export default function ProductPage({item}) {
   return (
     <View>
-      <Text>{item.title}</Text>
+      <Text></Text>
     </View>
   )
 }

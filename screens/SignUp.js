@@ -100,6 +100,10 @@ export default function SignUp({navigation}) {
             value={confirmPassword}
             placeholderTextColor={"#cccccc"}
           ></TextInput>
+
+          <Text style={{ color: "#FFFF",FontSize:30 }}>
+            By creating an account, you agrre to our <Text style={{ color: "#009C9D", textDecorationLine: "underline" }}>Terms of Service</Text>  and <Text style={{ color: "#009C9D", textDecorationLine: "underline" }}>Privacy Policy</Text>
+          </Text>
           {loading ? (
             <ActivityIndicator size="large" color="#fffff" />
           ) : (

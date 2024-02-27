@@ -1,11 +1,15 @@
 import { View, Text, Button,StyleSheet,Image, TouchableOpacity} from 'react-native'
 import React from 'react'
+import { useNavigation } from '@react-navigation/native';
 
 export default function MainPageBrand(props) {
+  const navigation = useNavigation();
   return (
-    <TouchableOpacity style={styles.brandBox}>
+    
+    <TouchableOpacity style={styles.brandBox}  onPress={()=> navigation.navigate("ProductPage")}>
       <Image style={styles.logoInBox} source={props.logo}/>
     </TouchableOpacity>
+    
   )
 }
 
