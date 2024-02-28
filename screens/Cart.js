@@ -5,7 +5,7 @@ import ListPage from "./ListPage";
 
 export default function Cart({ navigation }) {
   return (
-    
+    // use context to pass user data and recup the cart then check if the cart is empty or not
     <View style={styles.container}>
       <View style={styles.emptyCart}>
         <Image

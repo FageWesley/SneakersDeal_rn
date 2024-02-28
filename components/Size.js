@@ -1,0 +1,18 @@
+export const sizeData = [
+  { value: 35.5 },
+  { value: 36 },
+  { value: 36.5 },
+  { value: 37 },
+  { value: 37.5 },
+  { value: 38 },
+  { value: 38.5 },
+  { value: 39 },
+  { value: 40 },
+  { value: 40.5 },
+  { value: 41 },
+  { value: 42 },
+  { value: 42.5 },
+  { value: 43 },
+  { value: 44 },
+  { value: 44.5 },
+];
