@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
-import getItemsByBrand from "../FirebaseConfig";
+import getItemsByBrand from "../database/getItemsByBrand";
 
 export default function MainPageBrand(props) {
   const navigation = useNavigation();

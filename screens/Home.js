@@ -4,34 +4,34 @@ import MainPageBrand from "../components/MainPageBrand";
 import MainCarousel from "../components/MainCarousel";
 import { nike, adidas, new_balance, jordan } from "../components/Brands";
 import { useNavigation } from "@react-navigation/native";
-
+import TopBar from "../components/TopBar";
+import React, { useContext } from "react";
+import Context from "../database/Context";
 
 export default function App() {
   const navigation = useNavigation();
+  const user = useContext(Context);
 
   return (
     <ScrollView>
       {/* First box  */}
-        <View style={[styles.container, { alignItems: "center" }]}>
-          <MainPageInfo></MainPageInfo>
-
-          <View style={styles.brandBoxes}>
-            <MainPageBrand logo={nike.logo} name={nike.name}/>
-            <MainPageBrand logo={adidas.logo} name={adidas.name}/>
-            <MainPageBrand logo={new_balance.logo}name={new_balance.name} />
-            <MainPageBrand logo={jordan.logo} name={jordan.name}/>
-          </View>
-          <Text onPress={()=>navigation.navigate("Filter")}>blaaaaaaaaaaaaaaaaaa</Text>
+      <View style={[styles.container, { alignItems: "center" }]}>
+        <MainPageInfo></MainPageInfo>
+        <View style={styles.brandBoxes}>
+          <MainPageBrand logo={nike.logo} name={nike.name} />
+          <MainPageBrand logo={adidas.logo} name={adidas.name} />
+          <MainPageBrand logo={new_balance.logo} name={new_balance.name} />
+          <MainPageBrand logo={jordan.logo} name={jordan.name} />
         </View>
+      </View>
 
-
-        {/* Carrousel component */}
-        <View style={styles.carrousel}>
-          <Text style={styles.nextDrops}>Next Drops</Text>
-          <View style={styles.line} />
-          <View style={{ marginTop: 75 }}></View>
-          <MainCarousel></MainCarousel>
-        </View>
+      {/* Carrousel component */}
+      <View style={styles.carrousel}>
+        <Text style={styles.nextDrops}>Next Drops</Text>
+        <View style={styles.line} />
+        <View style={{ marginTop: 75 }}></View>
+        <MainCarousel></MainCarousel>
+      </View>
     </ScrollView>
   );
 }

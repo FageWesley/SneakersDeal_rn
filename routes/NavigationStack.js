@@ -20,9 +20,6 @@ export const HomeStack = () => {
       <Nav.Screen name="Search" component={Search} />
       <Nav.Screen name="Home" component={Home} />
 
-      <Nav.Group screenOptions={{ presentation: "modal" }}>
-        <Nav.Screen name="Filter" component={Filter} />
-      </Nav.Group>
     </Nav.Navigator>
   );
 };
