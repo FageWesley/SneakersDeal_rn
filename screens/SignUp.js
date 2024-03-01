@@ -39,16 +39,19 @@ export default function SignUp({navigation}) {
         switch (error.code) {
           case "auth/email-already-in-use":
             alert("Email already in use");
+            break;
           case "auth/invalid-email":
             alert("Invalid email");
+            break;
           case "auth/weak-password":
             alert("Weak password");
+            break;
           case "auth/operation-not-allowed":
             alert("Operation not allowed");
+            break;
           case "auth/argument-error":
             alert("Argument error");
             break;
-  
           default:
             break;
         }

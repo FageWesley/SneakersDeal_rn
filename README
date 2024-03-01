@@ -1,0 +1,44 @@
+# Mon Projet E-Commerce
+
+Ce projet est une application mobile de commerce électronique construite avec React Native. Elle permet aux utilisateurs de parcourir des produits, de les ajouter à leur panier et de gérer leurs préférences.
+
+## Structure des Fichiers et Dossiers
+
+### `/assets`
+Contient les ressources statiques telles que les images et les icônes utilisées dans l'application.
+
+#### `/icons`
+- `*.svg`: Fichiers SVG pour les icônes utilisées à travers l'application, telles que le panier, les réglages, le cœur, etc.
+
+#### `/images`
+- `*.png`: Images de produits et logos de marques utilisés dans l'application.
+
+### `/components`
+Composants réutilisables de l'interface utilisateur.
+
+#### `/icons`
+- `*.js`: Composants React représentant des icônes individualisées.
+- `BottomBar.js`: Barre de navigation inférieure de l'application.
+- `Brands.js`, `Card.js`, `CarouselCard.js`: Composants pour afficher des marques, des cartes de produits et des cartes de carrousel.
+- `MainCarousel.js`, `MainPageBrand.js`, `MainPageInfo.js`: Composants pour la page principale, incluant le carrousel principal et les informations de la marque.
+- `ProductCard.js`, `RadioButton.js`, `Size.js`: Composants pour la présentation des produits, les boutons radio et les options de taille.
+- `TopBar.js`: Barre de navigation supérieure de l'application.
+
+### `/database`
+Logique de gestion de la base de données.
+
+- `Context.js`: Contexte React pour gérer l'état global de l'application.
+- `addProduct.js`, `addToCart.js`, `checkLike.js`: Fonctions pour ajouter des produits, les ajouter au panier et vérifier les likes.
+- `deleteProduct.js`, `getAllProduct.js`, `getItemsByBrand.js`: Fonctions pour supprimer des produits, récupérer tous les produits et récupérer les articles par marque.
+- `getUserCart.js`, `removeFromCart.js`, `setLike.js`: Fonctions pour récupérer le panier de l'utilisateur, retirer des articles du panier et définir un like.
+
+### `/routes`
+Logique de routage de l'application.
+
+- `Navigation.js`: Configuration du système de navigation de l'application.
+- `screens`: Dossier contenant tous les écrans de l'application.
+  - `Cart.js`, `Create.js`, `Delete.js`: Écrans pour le panier, la création et la suppression de produits.
+  - `Filter.js`, `Home.js`, `Infos.js`: Écrans pour le filtrage des produits, l'accueil et les informations.
+  - `Like.js`, `Login.js`, `ProductByBrand.js`: Écrans pour les produits aimés, la connexion et la présentation des produits par marque.
+  - `ProductPage.js`, `Search.js`, `Settings.js`: Écrans pour la page produit, la recherche et les paramètres.
+  - `SignUp.js`, `Update.js`: Écrans pour l'inscription et la mise à jour des informations utilisateur.

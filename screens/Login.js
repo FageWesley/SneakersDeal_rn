@@ -46,35 +46,7 @@ export default function Login({navigation}) {
     }
     setloading(false);
   };
-  const signUp = async () => {
-    setloading(true);
-    try {
-      const response = await createUserWithEmailAndPassword(
-        FIREBASE_AUTH,
-        email,
-        password
-      );
-    } catch (error) {
-      switch (error.code) {
-        case "auth/email-already-in-use":
-          alert("Email already in use");
-        case "auth/invalid-email":
-          alert("Invalid email");
-        case "auth/weak-password":
-          alert("Weak password");
-        case "auth/operation-not-allowed":
-          alert("Operation not allowed");
-        case "auth/argument-error":
-          alert("Argument error");
-          break;
-
-        default:
-          break;
-      }
-    }
-    setloading(false);
-  };
-
+  
   return (
     <View style={styles.container}>
       <KeyboardAvoidingView behavior="padding">
