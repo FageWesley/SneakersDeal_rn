@@ -1,16 +1,29 @@
 import {
   StyleSheet,
-  Text,
   View,
   Image,
-  ScrollView,
   FlatList,
 } from "react-native";
 import React from "react";
 import ProductCard from "../components/ProductCard";
+import getAllProducts from "../database/getAllProduct";
+import { useState, useEffect } from "react";
 
-export default function Search({ route }) {
-  const { productList } = route.params;
+export default function Search() {
+  
+  const [productList, setProductList] = useState([]);
+  useEffect(() => {
+    getAllProducts().then((snapshot) => {
+      const data = snapshot.val();
+      const productArray = [];
+      for (let key in data) {
+        productArray.push(data[key]);
+      }
+      setProductList(productArray);
+    });
+   
+   }, []);
+  
 
   return (
     <View>
@@ -45,6 +58,7 @@ const styles = StyleSheet.create({
     height: 150,
     width: 150,
     borderRadius: 0,
-    alignSelf: "flex-start",
+    alignSelf: "center",
+    marginTop: 5,
   },
 });

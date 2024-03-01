@@ -4,14 +4,12 @@ import BottomBar from "./components/BottomBar";
 import TopBar from "./components/TopBar";
 import Login from "./screens/Login";
 import SignUp from "./screens/SignUp";
-import Search from "./screens/Search";
 import {
   NavigationContainer,
   NavigationContext,
 } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Home from "./screens/Home";
-import Cart from "./screens/Cart";
+
 import { User, onAuthStateChanged } from "firebase/auth";
 import { FIREBASE_APP, FIREBASE_AUTH } from "./FirebaseConfig";
 import ProductPage from "./screens/ProductPage";
@@ -33,48 +31,49 @@ export default function App() {
 
   return (
     <Context.Provider value={user}>
-    <NavigationContainer>
-      <Stack.Navigator initalRouteName="Login">
-        {user ? (
+      <NavigationContainer>
+        <Stack.Navigator initalRouteName="Login">
+          {user ? (
+            <Stack.Screen
+              name="InsideApp"
+              component={BottomBar}
+              options={({ navigation }) => ({
+                headerBackground: () => <TopBar />,
+                title: "",
+                headerRight: () => (
+                  <Ionsicons
+                    name={"search"}
+                    color={"white"}
+                    size={24}
+                    style={{ marginRight: 7, marginBottom: 7 }}
+                    onPress={() => navigation.navigate("Filter")}
+                  />
+                ),
+              })}
+            />
+          ) : (
+            <Stack.Screen
+              name="Login"
+              component={Login}
+              options={{ headerShown: false }}
+            />
+          )}
           <Stack.Screen
-            name="InsideApp"
-            component={BottomBar}
-            options={({ navigation }) => ({
-              headerBackground: () => <TopBar/>,
-              title: "",
-              headerRight: () => (
-                <Ionsicons
-                  name={"search"}
-                  color={"white"}
-                  size={24}
-                  style={{ marginRight: 7, marginBottom: 7 }}
-                  onPress={() => navigation.navigate("Filter")}
-                />
-              ),
-            })}
-          />
-        ) : (
-          <Stack.Screen
-            name="Login"
-            component={Login}
+            name="SignUp"
+            component={SignUp}
             options={{ headerShown: false }}
           />
-        )}
-        <Stack.Screen
-          name="SignUp"
-          component={SignUp}
-          options={{ headerShown: false }}
-        />
 
-        <Stack.Group screenOptions={{ presentation: "modal" }}>
-          <Stack.Screen
-            name="Filter"
-            component={Filter}
-            options={{ headerShown: false }}
-          />
-        </Stack.Group>
-      </Stack.Navigator>
-    </NavigationContainer>
+          <Stack.Group screenOptions={{ presentation: "modal" }}>
+            <Stack.Screen
+              name="Filter"
+              component={Filter}
+              options={{ headerShown: false }}
+            />
+          </Stack.Group>
+        </Stack.Navigator>
+        
+      </NavigationContainer>
     </Context.Provider>
   );
 }

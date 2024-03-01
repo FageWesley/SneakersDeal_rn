@@ -1,18 +1,7 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  Modal,
-  TextInput,
-  FlatList,
-  Keyboard,
-} from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
 import React from "react";
 import { useState } from "react";
-import Ionsicons from "react-native-vector-icons/Ionicons";
 import getAllProducts from "../database/getAllProduct";
-import ProductCard from "./ProductCard";
 import { useNavigation } from "@react-navigation/native";
 
 export default function TopBar() {
@@ -34,7 +23,6 @@ export default function TopBar() {
         style={styles.logo}
       ></Image>
       <Text style={styles.title}>SneakersDeal</Text>
-
     </View>
   );
 }

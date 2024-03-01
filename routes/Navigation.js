@@ -8,10 +8,17 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import Home from "../screens/Home";
 import Cart from "../screens/Cart";
 import Like from "../screens/Like";
+import Search from "../screens/Search";
+import Create from "../screens/Create";
+import Update from "../screens/Update";
+import Delete from "../screens/Delete";
 import Settings from "../screens/Settings";
+
+import ProductByBrand from "../screens/ProductByBrand";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import ProductPage from "../screens/ProductPage";
-import NavigationStack from "./NavigationStack";
+import Filter from "../screens/Filter";
+import Infos from "../screens/Infos";
 
 const homeName = "Home";
 const heartName = "Like";
@@ -19,12 +26,12 @@ const settingsName = "Settings";
 const cartName = "Cart";
 
 const Tab = createBottomTabNavigator();
+const Nav = createNativeStackNavigator();
 
-export default function Navigation() {
+function TabBar() {
   return (
-    <NavigationContainer independent={true}>
+    
       <Tab.Navigator
-        initialRouteName={homeName}
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
@@ -52,7 +59,7 @@ export default function Navigation() {
       >
         <Tab.Screen
           name={homeName}
-          component={NavigationStack}
+          component={StackNavigation }
           options={{ tabBarLabel: "" }}
         />
         <Tab.Screen
@@ -69,10 +76,53 @@ export default function Navigation() {
           name={settingsName}
           component={Settings}
           options={{ tabBarLabel: "" }}
+
         />
       </Tab.Navigator>
-    </NavigationContainer>
+    
   );
 }
 
-const styles = StyleSheet.create({});
+function StackNavigation() {
+  return (
+    <Nav.Navigator
+      initialRouteName="HomeScreen"
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <Nav.Screen name="ProductPage" component={ProductPage} />
+      <Nav.Screen name="Search" component={Search} />
+      <Nav.Screen name="HomeScreen" component={Home} />
+      <Nav.Screen
+        name="Create"
+        component={Create}
+        options={{ headerShown: false }}
+      />
+      <Nav.Screen
+        name="Update"
+        component={Update}
+        options={{ headerShown: false }}
+      />
+      <Nav.Screen
+        name="Delete"
+        component={Delete}
+        options={{ headerShown: false }}
+      />
+      <Nav.Screen name="Settings" component={Settings} />
+      <Nav.Screen name="Filter" component={Filter} />
+      <Nav.Screen name="Brand" component={ProductByBrand} />
+      <Nav.Screen name="Infos" component={Infos} />
+      
+      
+    </Nav.Navigator>
+  );
+};
+
+export default function Navigation() {
+  return (
+    <NavigationContainer independent={true}>
+    <TabBar />
+    </NavigationContainer>
+  );
+}

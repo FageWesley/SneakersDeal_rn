@@ -1,7 +1,4 @@
 import {
-  View,
-  Text,
-  Button,
   StyleSheet,
   Image,
   TouchableOpacity,
@@ -12,11 +9,13 @@ import getItemsByBrand from "../database/getItemsByBrand";
 
 export default function MainPageBrand(props) {
   const navigation = useNavigation();
+    
+
   return (
     <TouchableOpacity
       style={styles.brandBox}
       onPress={() =>
-        navigation.navigate("Search", {
+        navigation.navigate("Brand", {
           productList: getItemsByBrand(props.name),
         })
       

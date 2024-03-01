@@ -7,21 +7,49 @@ import {
   ScrollView,
   TouchableOpacity,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import addToCart from "../database/addToCart";
 import Context from "../database/Context";
 import { useContext } from "react";
 import RadioButton from "../components/RadioButton";
 import { sizeData } from "../components/Size";
 import Ionsicons from "react-native-vector-icons/Ionicons";
+import setLike from "../database/setLike";
+import getUserCart from "../database/getUserCart";
 
 export default function ProductPage({ route, navigation }) {
-  const { product } = route.params;
+  const { product } = (route.params || {});
   const test = 1;
   const user = useContext(Context);
   const [size, setSize] = useState(null);
   const [isLiked, setIsLiked] = useState(false);
+  const handleLike = () => {
+    setIsLiked(!isLiked);
+    if (isLiked) {
+      setLike({ product }, user.uid);
+    } else {
+      console.log("unliked");
+    }
+  };
+  const [userCart, setUserCart] = useState([]);
+  
+  handleAddToCart = () => {
+    setUserCart([...userCart, { product, size, quantity: 1}]);
+    addToCart(userCart, user.uid);
+  };
 
+  useEffect(() => {
+    getUserCart(user.uid).then((snapshot) => {
+      const data = snapshot.val();
+      const cartArray = [];
+      for (let key in data) {
+        cartArray.push(data[key]);
+      }
+      setUserCart(cartArray);
+    });
+  }, [userCart]);
+
+  
   return (
     <ScrollView>
       <Text style={styles.text}>{product.title}</Text>
@@ -31,20 +59,25 @@ export default function ProductPage({ route, navigation }) {
       </View>
       <RadioButton data={sizeData} onSelect={(value) => setSize(value)} />
       <View style={styles.buttons}>
-      {/* Si aucune taille n'est choisis ne pas rajouter au panier  */}
-        <TouchableOpacity style={styles.addToCartButton} onPress={() => {
-          addToCart({ product }, 1, user.uid);
-        }}>
+        {/* Si aucune taille n'est choisis ne pas rajouter au panier  */}
+        <TouchableOpacity
+          style={styles.addToCartButton}
+          onPress={() => {
+            handleAddToCart();
+          }}
+        >
           <Text style={styles.cartText}>Add to cart</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.addToLikeButton} onPress={() => {
-              setIsLiked(!isLiked);
-            }}>
+        <TouchableOpacity
+          style={styles.addToLikeButton}
+          onPress={() => {
+            handleLike();
+          }}
+        >
           <Ionsicons
-            name={isLiked ? "heart" : "heart-outline"}
+            name={isLiked ? "heart-outline" : "heart"}
             color={"white"}
             size={24}
-            
           />
         </TouchableOpacity>
       </View>
@@ -94,15 +127,15 @@ const styles = StyleSheet.create({
   },
   addToCartButton: {
     backgroundColor: "black",
-    width:300,
+    width: 300,
     height: 50,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 50,
-    marginTop:20,
-    marginLeft:10,
-    marginRight:10,
-    marginBottom:50,
+    marginTop: 20,
+    marginLeft: 10,
+    marginRight: 10,
+    marginBottom: 50,
   },
   cartText: {
     color: "white",
@@ -115,8 +148,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 100,
-    marginTop:20,
-
+    marginTop: 20,
   },
   LikeText: {
     color: "white",

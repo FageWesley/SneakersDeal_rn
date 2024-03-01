@@ -15,7 +15,6 @@ export default function getItemsByBrand(brand) {
   
         if (value == brand) {
           productsArray.push(data[key]);
-          // console.log(productsArray)
         }
       }
 });

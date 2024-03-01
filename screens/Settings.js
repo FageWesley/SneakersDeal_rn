@@ -1,20 +1,23 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import Card from "../components/Card";
 import IonsIcon from "react-native-vector-icons/Ionicons";
 import { FIREBASE_AUTH } from "../FirebaseConfig";
 import { signOut } from "firebase/auth";
 import { useNavigation } from "@react-navigation/native";
+import { useContext } from "react";
+import Context from "../database/Context";
 
 export default function Settings() {
   const logOut = async () => {
     await signOut(FIREBASE_AUTH);
   };
   const navigation = useNavigation()
+  const user = useContext(Context)
   return (
     <View style={styles.container}>
-      <Card >
-        <Text onPress={()=> navigation.navigate("ProductPage")} style={styles.SettingsCardTitle}>Personal informations</Text>
+      <Card route = "Infos" params={null}>
+        <Text style={styles.SettingsCardTitle}>Personal informations</Text>
         <IonsIcon
           name={"caret-forward-outline"}
           color={"black"}
@@ -22,7 +25,7 @@ export default function Settings() {
           style={styles.arrowIcon}
         />
       </Card>
-      <Card>
+      <Card route = "Infos" params={null}>
         <Text style={styles.SettingsCardTitle}>Payment informations</Text>
         <IonsIcon
           name={"caret-forward-outline"}
@@ -31,7 +34,7 @@ export default function Settings() {
           style={styles.arrowIcon}
         />
       </Card>
-      <Card>
+      <Card route = "Infos" params={null}>
         <Text style={styles.SettingsCardTitle}>Addres informations</Text>
         <IonsIcon
           name={"caret-forward-outline"}
@@ -40,8 +43,37 @@ export default function Settings() {
           style={styles.arrowIcon}
         />
       </Card>
-      <Card >
+      
+      {user.uid == "HrOss5G4KYeR023s5HvxZlS6Twp2" ? (<><Card route="Create" params={null}>
+        <Text style={styles.SettingsCardTitle}>Add Product</Text>
+        <IonsIcon
+          name={"caret-forward-outline"}
+          color={"black"}
+          size={24}
+          style={styles.arrowIcon}
+        />
+        </Card>
+        <Card route="Delete" params={null}>
+        <Text style={styles.SettingsCardTitle}>Remove Product</Text>
+        <IonsIcon
+          name={"caret-forward-outline"}
+          color={"black"}
+          size={24}
+          style={styles.arrowIcon}
+        />
+        </Card>
+        </>
+        ): null}
+
+        
+      <Card>
         <Text style={styles.SettingsCardTitle} onPress={logOut}>Log Out</Text>
+        <IonsIcon
+          name={"exit-outline"}
+          color={"black"}
+          size={24}
+          style={styles.arrowIcon}
+        />
       </Card>
     </View>
   );

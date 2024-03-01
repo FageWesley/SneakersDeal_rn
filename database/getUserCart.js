@@ -1,16 +1,7 @@
-import { ref, onValue } from "firebase/database";
+import { ref, onValue,get } from "firebase/database";
 import { FIREBASE_DATABASE } from "../FirebaseConfig";
 
-export default function getUserCart(cartId) {
-  const cartRef = ref(FIREBASE_DATABASE, "cart/" + cartId + "/");
-  const cartArray = [];
-  onValue(cartRef, (snapshot) => {
-      const data = snapshot.val();
-      // console.log(data);
-      for (let key in data) {
-        cartArray.push(data[key]);
-      }
-  });
-
-  return cartArray;
-}
+export default function getUserCart(userId) {
+  const cartRef = ref(FIREBASE_DATABASE, "cart/" + userId + "cart");
+  return get(cartRef)
+;}

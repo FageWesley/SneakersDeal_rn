@@ -6,7 +6,7 @@ import {
   FlatList,
   TextInput,
 } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import Ionsicons from "react-native-vector-icons/Ionicons";
 import ProductCard from "../components/ProductCard";
 import { useState } from "react";
@@ -16,12 +16,22 @@ import { useNavigation } from "@react-navigation/native";
 export default function Filter() {
   const [search, setSearch] = useState("");
   const [filteredSearch, SetFilteredSearch] = useState([]);
+  const [allProducts, setAllProducts] = useState([]);
   function handleFilter(searchTerm) {
     SetFilteredSearch(
       allProducts.filter((products) => products.title.includes(searchTerm))
     );
   }
-  const allProducts = getAllProducts();
+  useEffect(() => {
+    getAllProducts().then((snapshot) => {
+      const data = snapshot.val();
+      const likedArray = [];
+      for (let key in data) {
+        likedArray.push(data[key]);
+      }
+      setAllProducts(likedArray);
+    });
+  }, []);
   const navigation = useNavigation();
   return (
     <View style={styles.modal} animationType="slide">
